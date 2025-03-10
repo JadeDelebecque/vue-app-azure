@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_20152d0cee324e2c8664a51ca4392ade }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_fd51d03af1524fa68aaadbb7f1a48313 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_07579603a59b4f27bbb5231fb69a4fb7 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_c9c25055537448bc9121ce8467b133be }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_20152d0cee324e2c8664a51ca4392ade }}/jadedelebecque/cloudcomputing:latest
+        tags: index.docker.io/jadedelebecque/cloudcomputing:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'AppTP3CloudComputing'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_ca48b4e1c81649c4b627e23149d1f28c }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_20152d0cee324e2c8664a51ca4392ade }}/jadedelebecque/cloudcomputing:latest'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_33f1ccba46fd4bb59ee78e6d997ef688 }}
+        images: 'index.docker.io/jadedelebecque/cloudcomputing:${{ github.sha }}'
