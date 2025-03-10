@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_20152d0cee324e2c8664a51ca4392ade }}/jadedelebecque/cloudcomputing:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_20152d0cee324e2c8664a51ca4392ade }}/jadedelebecque/cloudcomputing:latest
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'AppTP3CloudComputing'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_ca48b4e1c81649c4b627e23149d1f28c }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_20152d0cee324e2c8664a51ca4392ade }}/jadedelebecque/cloudcomputing:${{ github.sha }}'
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_20152d0cee324e2c8664a51ca4392ade }}/jadedelebecque/cloudcomputing:latest'
